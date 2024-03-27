@@ -28,4 +28,17 @@ def get_number_of_vacancies(vacancies, upper_limit):
     return vacancies[:upper_limit]
 
 
+def output_vacancies(vacancies):
+    if vacancies:
+        for index, vacancy in enumerate(vacancies, start=1):
+            print(f"Вакансия {index}:")
+            print(f"Название: {vacancy.get('name', 'Не указано.')}")
+            print(f"Зарплата от: {vacancy.get('salary_from', 'Не указана.')}")
+            print(f"Описание: {vacancy.get('description', 'Не указано.')}")
+            print(f"Ссылка: {vacancy.get('alternate_url', 'Не указана.')}")
+            print()
+    else:
+        print("На основании введенных данных подходящие вакансии отсутствуют.")
+
+
 

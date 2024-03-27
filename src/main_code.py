@@ -1,18 +1,19 @@
-from src.api.hh_api import HeadHunterAPI
-from src.models.vacancy import Vacancy
-from src.utils.helpers import print_vacancies
-from src.utils.helpers import filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies
+from src.hh_ru_api import HeadHunterAPI
+from src.vacancy import Vacancy
+from src.methods_for_help import filter_vacancies, get_vacancies_based_on_salary
+from src.methods_for_help import filter_getting_vacancies, get_number_of_vacancies
+from src.methods_for_help import output_vacancies
 
 
 def user_input():
     platforms = ["HeadHunter"]
-    search_query = input("Введите поисковый запрос: ")
+    search_request = input("Введите итересующий запрос: ")
     top_n = int(input("Введите нужное число поисковых запросов для вывода: "))
-    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
-    salary_range = input("Введите диапазон зарплат (Формат: xxxx-yyyy): ")
+    filter_words = input("Введите ключевые слова для более точного поиска и фильтрации: ").split()
+    salary_range = input("Введите интересущий диапазон зарплат (Формат: xxxx-yyyy): ")
 
     hh_api = HeadHunterAPI()
-    hh_vacancies = hh_api.get_vacancies(search_query)
+    hh_vacancies = hh_api.get_vacancy(search_request)
 
     print("Ответ по запросу:", hh_vacancies)
 
