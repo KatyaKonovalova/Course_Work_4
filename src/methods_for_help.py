@@ -18,3 +18,14 @@ def get_vacancies_based_on_salary(vacancies, salary_range):
     return [vacancy for vacancy in vacancies if
             vacancy.get('salary_from', 0) >= minimum_wage and vacancy.get('salary_from',
                                                                           float('inf')) <= maximum_wage]
+
+
+def filter_getting_vacancies(vacancies):
+    return sorted(vacancies, key=lambda vacancy: vacancy.get('salary_from', 0), reverse=True)
+
+
+def get_number_of_vacancies(vacancies, upper_limit):
+    return vacancies[:upper_limit]
+
+
+
