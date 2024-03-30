@@ -13,7 +13,7 @@ class TestJSONSaverClass(unittest.TestCase):
 
         json_action.add_vacancy(vacancy)
 
-        mock_open.assert_called_once_with('vacancies.json', 'a')
+        mock_open.assert_called_once_with('vacancy.json', 'a')
 
 
 if __name__ == '__main__':
