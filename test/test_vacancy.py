@@ -14,7 +14,7 @@ class TestVacancyClass(unittest.TestCase):
     def test_vacancy_creation_with_missing_salary(self):
         vacancy = Vacancy("Python Developer", "example.com", None, "Experience: 3 years")
 
-        self.assertEqual(vacancy.salary, "Зарплата не указана.")
+        self.assertEqual(vacancy.salary, "Зарплата не указана")
 
     def test_vacancy_comparison(self):
         vacancy1 = Vacancy("Python Developer", "example1.com", "100000", "Experience: 3 years")
