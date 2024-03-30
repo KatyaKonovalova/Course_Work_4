@@ -6,10 +6,10 @@ from src.methods_for_help import output_vacancies
 
 
 def user_input():
-    platforms = ["HeadHunter"]
+    # platform = ["HeadHunter"]
     search_request = input("Введите итересующий запрос: ")
-    top_n = int(input("Введите нужное число поисковых запросов для вывода: "))
-    filter_words = input("Введите ключевые слова для более точного поиска и фильтрации: ").split()
+    needed_number_of_vacancies = int(input("Введите нужное число поисковых запросов для вывода: "))
+    key_words_for_searching = input("Введите ключевые слова для более точного поиска и фильтрации: ").split()
     salary_range = input("Введите интересущий диапазон зарплат (Формат: xxxx-yyyy): ")
 
     hh_api = HeadHunterAPI()
@@ -38,14 +38,15 @@ def user_input():
             elif isinstance(vacancy_info, Vacancy):
                 vacancies_list.append(vacancy_info)
 
-        filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
-        ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
-        sorted_vacancies = sort_vacancies(ranged_vacancies)
-        top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
-        print_vacancies(top_vacancies)
+        filtered_vacancies = filter_vacancies(vacancies_list, key_words_for_searching)
+        ranged_vacancies = get_vacancies_based_on_salary(filtered_vacancies, salary_range)
+        sorted_vacancies = filter_getting_vacancies(ranged_vacancies)
+        top_vacancies = get_number_of_vacancies(sorted_vacancies, needed_number_of_vacancies)
+        output_vacancies(top_vacancies)
     else:
         print("Не удалось найти нужные вакансии. Пожалуйста, перепроверьте введенные данные и попробуйет снова.")
 
-    if __name__ == "__main__":
-        user_input()
-        print("Программа завершила выполнение.")
+
+if __name__ == "__main__":
+    user_input()
+    print("Программа завершила выполнение.")

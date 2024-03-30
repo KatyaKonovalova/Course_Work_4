@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import json
 
+
 class AbstractVacancyAction(ABC):
 
     @abstractmethod
