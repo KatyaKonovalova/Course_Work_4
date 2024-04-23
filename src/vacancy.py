@@ -24,6 +24,3 @@ class Vacancy:
     def from_json(json_str):
         data = json.loads(json_str)
         return Vacancy(data['title'], data['link'], data['salary'], data['description'])
-
-
-

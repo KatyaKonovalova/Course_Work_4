@@ -1,5 +1,6 @@
 from src.hh_ru_api import HeadHunterAPI
 from src.vacancy import Vacancy
+from src.vacancy_actions import JSONAction
 from src.methods_for_help import filter_vacancies, get_vacancies_based_on_salary
 from src.methods_for_help import filter_getting_vacancies, get_number_of_vacancies
 from src.methods_for_help import output_vacancies
@@ -43,6 +44,8 @@ def user_input():
         sorted_vacancies = filter_getting_vacancies(ranged_vacancies)
         top_vacancies = get_number_of_vacancies(sorted_vacancies, needed_number_of_vacancies)
         output_vacancies(top_vacancies)
+        save_file = JSONAction('data/hh_vacancies.json')
+        save_file.add_vacancy(hh_vacancies)
     else:
         print("Не удалось найти нужные вакансии. Пожалуйста, перепроверьте введенные данные и попробуйет снова.")
 

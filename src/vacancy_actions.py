@@ -24,7 +24,7 @@ class JSONAction(AbstractVacancyAction):
     def add_vacancy(self, vacancy):
         with open(self.file_path, 'a') as file:
             json.dump(vars(vacancy), file)
-            file.write('\n')
+            file.write(f'{vacancy}\n')
 
     def delete_vacancy(self, vacancy):
         # Удаления вакансии из файла
