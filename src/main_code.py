@@ -18,36 +18,15 @@ def user_input():
 
     print("Ответ по запросу:", hh_vacancies)
 
-    if hh_vacancies and 'items' in hh_vacancies:
-        vacancies_list = []
+    vacancies_list = Vacancy.get_vacancy_objects_list(hh_vacancies)
 
-        for vacancy_info in hh_vacancies['items']:
-
-            if isinstance(vacancy_info, dict):
-                name = vacancy_info.get('name', 'Не указано')
-                alternate_url = vacancy_info.get('alternate_url', 'Не указано')
-                salary_info = vacancy_info.get('salary')
-
-                if salary_info:
-                    salary_from = salary_info.get('from', 'Зарплата не указана')
-                else:
-                    salary_from = 'Зарплата не указана'
-                description = vacancy_info.get('description', 'Описание отсутствует')
-                vacancies_list.append({'name': name, 'alternate_url': alternate_url, 'salary_from': salary_from,
-                                       'description': description})
-
-            elif isinstance(vacancy_info, Vacancy):
-                vacancies_list.append(vacancy_info)
-
-        filtered_vacancies = filter_vacancies(vacancies_list, key_words_for_searching)
-        ranged_vacancies = get_vacancies_based_on_salary(filtered_vacancies, salary_range)
-        sorted_vacancies = filter_getting_vacancies(ranged_vacancies)
-        top_vacancies = get_number_of_vacancies(sorted_vacancies, needed_number_of_vacancies)
-        output_vacancies(top_vacancies)
-        save_file = JSONAction('data/hh_vacancies.json')
-        save_file.add_vacancy(hh_vacancies)
-    else:
-        print("Не удалось найти нужные вакансии. Пожалуйста, перепроверьте введенные данные и попробуйет снова.")
+    filtered_vacancies = filter_vacancies(vacancies_list, key_words_for_searching)
+    ranged_vacancies = get_vacancies_based_on_salary(filtered_vacancies, salary_range)
+    sorted_vacancies = filter_getting_vacancies(ranged_vacancies)
+    top_vacancies = get_number_of_vacancies(sorted_vacancies, needed_number_of_vacancies)
+    output_vacancies(top_vacancies)
+    save_file = JSONAction('data/hh_vacancies.json')
+    save_file.add_vacancy(hh_vacancies)
 
 
 if __name__ == "__main__":
